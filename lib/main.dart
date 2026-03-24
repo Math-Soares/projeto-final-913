@@ -36,7 +36,7 @@ class _mainAppState extends State<mainApp> {
             NavigationDestination(
               icon: Icon(Icons.search),
               selectedIcon: Icon(Icons.search_outlined),
-              label: 'Search',
+              .label: 'Search',
             ),
             NavigationDestination(
               icon: Icon(Icons.settings),
