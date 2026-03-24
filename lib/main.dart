@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:primeiroaplicativo/screens/configPage.dart';
+import 'package:primeiroaplicativo/screens/searchPage.dart';
 
-import 'home_page.dart';
+import 'screens/homePage.dart';
 
 void main() {
   runApp(const mainApp());
@@ -47,8 +49,8 @@ class _mainAppState extends State<mainApp> {
         ),
         body: <Widget>[
           homePage(),
-          Text('search page'),
-          Text('config page')
+          searchPage(),
+          configPage()
         ][_selectedIndex],
       ),
     );
