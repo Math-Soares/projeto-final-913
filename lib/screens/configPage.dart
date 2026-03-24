@@ -10,6 +10,8 @@ class configPage extends StatefulWidget {
 class _configPageState extends State<configPage> {
   @override
   Widget build(BuildContext context) {
-    return Text('Config Page');
+    return SafeArea(
+        child: Text('Config Page')
+    );
   }
 }
