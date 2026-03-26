@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:primeiroaplicativo/screens/configPage.dart';
-import 'package:primeiroaplicativo/screens/searchPage.dart';
-
-import 'screens/homePage.dart';
+import 'package:primeiroaplicativo/screens/config_page.dart';
+import 'package:primeiroaplicativo/screens/home_page.dart';
+import 'package:primeiroaplicativo/screens/search_page.dart';
 
 void main() {
-  runApp(const mainApp());
+  runApp(const MainApp());
 }
 
-class mainApp extends StatefulWidget {
-  const mainApp({super.key});
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
 
   @override
-  State<mainApp> createState() => _mainAppState();
+  State<MainApp> createState() => _MainAppState();
 }
 
-class _mainAppState extends State<mainApp> {
+class _MainAppState extends State<MainApp> {
   int _selectedIndex = 0;
+  ThemeMode _themeMode = ThemeMode.light;
+
+  void _onThemeChanged(bool isDark) {
+    setState(() {
+      _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: _themeMode,
       home: Scaffold(
         bottomNavigationBar: NavigationBar(
           selectedIndex: _selectedIndex,
+          indicatorColor: Colors.transparent,
           onDestinationSelected: (int index) {
             setState(() {
               _selectedIndex = index;
@@ -31,27 +41,33 @@ class _mainAppState extends State<mainApp> {
           },
           destinations: [
             NavigationDestination(
-              icon: Icon(Icons.home),
-              selectedIcon: Icon(Icons.home_outlined),
+              icon: Icon(Icons.home_outlined),
+              selectedIcon: Icon(Icons.home),
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.search),
-              selectedIcon: Icon(Icons.search_outlined),
+              icon: Icon(Icons.search_outlined),
+              selectedIcon: Icon(Icons.search),
               label: 'Search',
             ),
             NavigationDestination(
-              icon: Icon(Icons.settings),
-              selectedIcon: Icon(Icons.settings_outlined),
+              icon: Icon(Icons.settings_outlined),
+              selectedIcon: Icon(Icons.settings),
               label: 'Config',
             )
           ],
         ),
-        body: <Widget>[
-          homePage(),
-          searchPage(),
-          configPage()
-        ][_selectedIndex],
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: [
+            HomePage(),
+            SearchPage(),
+            ConfigPage(
+              isDark: _themeMode == ThemeMode.dark,
+              onThemeChanged: _onThemeChanged,
+            )
+          ],
+        )
       ),
     );
   }
