@@ -118,26 +118,33 @@ class _ConfigPageState extends State<ConfigPage> {
     required String selected,
     required ValueChanged<String> onChanged,
   }) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-        padding: const EdgeInsets.all(4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _segmentButton(
-              label: leftLabel,
-              isSelected: selected == leftLabel,
-              onTap: () => onChanged(leftLabel),
-            ),
-            const SizedBox(width: 6),
-            _segmentButton(
-              label: rightLabel,
-              isSelected: selected == rightLabel,
-              onTap: () => onChanged(rightLabel),
-            ),
-          ],
+      child: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            color: colorScheme.onSurface,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          padding: const EdgeInsets.all(4),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _segmentButton(
+                label: leftLabel,
+                isSelected: selected == leftLabel,
+                onTap: () => onChanged(leftLabel),
+              ),
+              const SizedBox(width: 6),
+              _segmentButton(
+                label: rightLabel,
+                isSelected: selected == rightLabel,
+                onTap: () => onChanged(rightLabel),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -148,8 +155,6 @@ class _ConfigPageState extends State<ConfigPage> {
     required bool isSelected,
     required VoidCallback onTap,
   }) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       onTap: onTap,
@@ -158,15 +163,12 @@ class _ConfigPageState extends State<ConfigPage> {
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? colorScheme.primary : Colors.transparent,
+          color: isSelected ? Colors.blue : Colors.transparent,
         ),
         child: Text(
           label,
           style: GoogleFonts.inter(
-            color:
-                isSelected
-                    ? colorScheme.onPrimary
-                    : colorScheme.onSurfaceVariant,
+            color: widget.isDark ? Colors.black : Colors.white,
             fontSize: 13,
             fontWeight: FontWeight.w700,
           ),
