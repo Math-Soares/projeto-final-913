@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:primeiroaplicativo/weekprevious_page.dart';
+import 'package:primeiroaplicativo/wheaterwarning_page.dart';
 
 import 'home_page.dart';
 
@@ -29,26 +31,20 @@ class _mainAppState extends State<mainApp> {
           },
           destinations: [
             NavigationDestination(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.access_alarms_sharp),
               selectedIcon: Icon(Icons.home_outlined),
-              label: 'Home',
+              label: 'Previous',
             ),
             NavigationDestination(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.add_alert_sharp),
               selectedIcon: Icon(Icons.search_outlined),
-              label: 'Search',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.settings),
-              selectedIcon: Icon(Icons.settings_outlined),
-              label: 'Config',
+              label: 'Warning',
             )
           ],
         ),
         body: <Widget>[
-          homePage(),
-          Text('search page'),
-          Text('config page')
+          WeekpreviousPage(),
+          //WheaterwarningPage()
         ][_selectedIndex],
       ),
     );
