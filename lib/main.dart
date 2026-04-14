@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import 'onboarding_page.dart';
 
 void main() {
   runApp(const mainApp());
@@ -36,19 +36,12 @@ class _mainAppState extends State<mainApp> {
             NavigationDestination(
               icon: Icon(Icons.search),
               selectedIcon: Icon(Icons.search_outlined),
-              .label: 'Search',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.settings),
-              selectedIcon: Icon(Icons.settings_outlined),
-              label: 'Config',
+              label: 'Search',
             )
           ],
         ),
         body: <Widget>[
-          homePage(),
-          Text('search page'),
-          Text('config page')
+          OnboardingPage(),
         ][_selectedIndex],
       ),
     );
