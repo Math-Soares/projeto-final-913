@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:primeiroaplicativo/screens/config_page.dart';
-import 'package:primeiroaplicativo/screens/home_page.dart';
 import 'package:primeiroaplicativo/screens/search_page.dart';
 
 void main() {
@@ -16,13 +14,7 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   int _selectedIndex = 0;
-  ThemeMode _themeMode = ThemeMode.light;
-
-  void _onThemeChanged(bool isDark) {
-    setState(() {
-      _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-    });
-  }
+  final ThemeMode _themeMode = ThemeMode.light;
 
   @override
   Widget build(BuildContext context) {
@@ -46,28 +38,37 @@ class _MainAppState extends State<MainApp> {
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.search_outlined),
+              icon: Icon(Icons.search),
               selectedIcon: Icon(Icons.search),
               label: 'Search',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.star_outline),
+              selectedIcon: Icon(Icons.star),
+              label: 'Favorites',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.notifications_outlined),
+              selectedIcon: Icon(Icons.notifications),
+              label: 'Alerts',
             ),
             NavigationDestination(
               icon: Icon(Icons.settings_outlined),
               selectedIcon: Icon(Icons.settings),
               label: 'Config',
-            )
+            ),
           ],
         ),
         body: IndexedStack(
           index: _selectedIndex,
           children: [
-            HomePage(),
+            SafeArea(child: Text('Home Page')),
             SearchPage(),
-            ConfigPage(
-              isDark: _themeMode == ThemeMode.dark,
-              onThemeChanged: _onThemeChanged,
-            )
+            SafeArea(child: Text('Favorites Page')),
+            SafeArea(child: Text('Alerts Page')),
+            SafeArea(child: Text('Config Page')),
           ],
-        )
+        ),
       ),
     );
   }
