@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import "package:google_fonts/google_fonts.dart";
 
 class WeekpreviousPage extends StatefulWidget {
   const WeekpreviousPage({super.key});
@@ -13,7 +13,6 @@ class _WeekpreviousPageState extends State<WeekpreviousPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.lightBlue,
         body: ListView(
           children: [
             Text(
@@ -21,56 +20,32 @@ class _WeekpreviousPageState extends State<WeekpreviousPage> {
               style: GoogleFonts.inter(
                 fontSize: 35,
                 fontWeight: FontWeight.w700,
-                color: Colors.white
               ),
             ),
-            buildContainer(
-              'Seg: 30°/18°',
-              Colors.lightBlueAccent,
-            ),
-            buildContainer(
-              'Ter:30°/18°',
-              Colors.lightBlueAccent,
-            ),
-            buildContainer(
-              'Qua: 30°/18° ',
-              Colors.lightBlueAccent,
-            ),
-            buildContainer(
-              'Qui; 30°/18°',
-              Colors.lightBlueAccent,
-            ),
-            buildContainer(
-              'Sex: 30°/18°',
-              Colors.lightBlueAccent,
-            ),
-            buildContainer(
-              'Sáb:30°/18°',
-              Colors.lightBlueAccent,
-            ),
-            buildContainer(
-              'Dom:30°/18°',
-              Colors.lightBlueAccent,
-            ),
-
-        ],
+            _buildContainer('Seg.: Máx. 30°/Min. 18°'),
+            _buildContainer('Ter.: Máx. 30°/Min. 18°'),
+            _buildContainer('Qua.: Máx. 30°/Min. 18°'),
+            _buildContainer('Qui.; Máx. 30°/Min. 18°'),
+            _buildContainer('Sex.: Máx. 30°/Min. 18°'),
+            _buildContainer('Sáb.: Máx. 30°/Min. 18°'),
+            _buildContainer('Dom.: Máx. 30°/Min. 18°'),
+          ],
+        ),
       ),
-    ),
     );
   }
 
-  buildContainer(String text, color) {
+  Widget _buildContainer(String text) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       decoration: BoxDecoration(
-        color: color,
         borderRadius: BorderRadius.circular(16),
+        color: colorScheme.surfaceContainerHigh,
       ),
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      width: 80,
-      height: 60,
-
-      child: Text(text, style: TextStyle(fontSize: 25, color: Colors.white)),
+      margin: EdgeInsets.all(12),
+      padding: EdgeInsets.all(14),
+      child: Text(text, style: GoogleFonts.inter(fontSize: 25)),
     );
   }
 }

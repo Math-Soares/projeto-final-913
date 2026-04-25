@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:primeiroaplicativo/weekprevious_page.dart';
 import 'package:primeiroaplicativo/wheaterwarning_page.dart';
 
-import 'home_page.dart';
-
 void main() {
-  runApp(const mainApp());
+  runApp(const MainApp());
 }
 
-class mainApp extends StatefulWidget {
-  const mainApp({super.key});
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
 
   @override
-  State<mainApp> createState() => _mainAppState();
+  State<MainApp> createState() => _MainAppState();
 }
 
-class _mainAppState extends State<mainApp> {
+class _MainAppState extends State<MainApp> {
   int _selectedIndex = 0;
 
   @override
@@ -31,21 +29,18 @@ class _mainAppState extends State<mainApp> {
           },
           destinations: [
             NavigationDestination(
-              icon: Icon(Icons.access_alarms_sharp),
-              selectedIcon: Icon(Icons.home_outlined),
+              icon: Icon(Icons.date_range_outlined),
+              selectedIcon: Icon(Icons.date_range),
               label: 'Previous',
             ),
             NavigationDestination(
-              icon: Icon(Icons.add_alert_sharp),
-              selectedIcon: Icon(Icons.search_outlined),
+              icon: Icon(Icons.warning_amber_rounded),
+              selectedIcon: Icon(Icons.warning_amber_rounded),
               label: 'Warning',
-            )
+            ),
           ],
         ),
-        body: <Widget>[
-          WeekpreviousPage(),
-          //WheaterwarningPage()
-        ][_selectedIndex],
+        body: <Widget>[WeekpreviousPage(), StormWarningPage()][_selectedIndex],
       ),
     );
   }
