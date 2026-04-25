@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
           _sectionTitle('Populares'),
           _buildCityCard('Fortaleza, CE'),
           _buildCityCard('Brasília, DF'),
-          _buildCityCard('Maceió, AL'),
+          _buildCityCard('Salvador, BA'),
         ],
       ),
     );

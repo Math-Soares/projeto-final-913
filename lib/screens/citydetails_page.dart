@@ -80,8 +80,8 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                     _hourCard('9h', '26°', false),
                     _hourCard('10h', '29°', false),
                     _hourCard('12h', '32°', true),
-                    _hourCard('1h', '31°', false),
-                    _hourCard('2h', '28°', false),
+                    _hourCard('13h', '31°', false),
+                    _hourCard('14h', '28°', false),
                   ],
                 ),
               ),
@@ -92,12 +92,14 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                 shrinkWrap: true,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 2.2,
+                childAspectRatio: 2,
                 children: [
                   _infoCard('Sensação', '33°C'),
                   _infoCard('Índice UV', 'Alto'),
                   _infoCard('Pressão', '1012hPa'),
                   _infoCard('Visib.', '10 km'),
+                  _infoCard('Umidade', '72%'),
+                  _infoCard('Vento', '17.39 km/h'),
                 ],
               ),
             ],
@@ -109,8 +111,10 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
 
   Widget _hourCard(String hour, String temp, bool selected) {
     return SizedBox(
-      width: 66,
+      width: 70,
+      height: 70,
       child: Card(
+        color: selected ? Theme.of(context).colorScheme.primaryContainer : null,
         margin: EdgeInsets.only(right: 8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
